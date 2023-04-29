@@ -1,8 +1,13 @@
 # File-Sorter
 
-Built thsi to deal with my ever increasing downloads folder and sort files into extension based directories.
+A solution to my laziness when it comes to cleaning up my downloads folder.
 
-Todo:
+Filewatcher wrapped in CLAP as a CLI tool.
 
-1. Add Tests
-2. Wrap with Clap
+Usage:
+
+`cargo run -- <directory_to_watch>`
+
+Currently only support file creation events.
+
+Note: Path is expanded to absolute path via HOME environment variable. For Windows users, absolute path should be supplied to the binary
