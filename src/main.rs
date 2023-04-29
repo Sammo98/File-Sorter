@@ -1,13 +1,23 @@
 pub mod watch;
+pub mod utils;
+use clap::Parser;
+use watch::FileWatcher;
+use utils::init_logger;
 
 fn main() {
-    if let Err(e) = watch::FileWatcher::backload() {
+    init_logger();
+    let mut fw = FileWatcher::parse();
+
+    log::info!("Filewatcher Backload Commencing...");
+    if let Err(e) = fw.backload() {
         println!("Error initiating filewatcher {}, exiting...", e.to_string());
         std::process::exit(1);
     }
-    if let Err(e) = watch::FileWatcher::run(){
+    log::info!("Filewatcher Backload Complete!");
+
+    log::info!("Filewatcher Beginning watch at {}", fw);
+    if let Err(e) = fw.run() {
         println!("Error initiating filewatcher {}, exiting...", e.to_string());
         std::process::exit(1);
     }
 }
-
